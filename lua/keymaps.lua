@@ -1,32 +1,34 @@
 -- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
+--  See `:help map()`
+local map = vim.keymap.set
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
-vim.keymap.set('n', '<leader>cs', '<cmd>nohlsearch<CR>')
-vim.keymap.set('n', ';', ':')
+map('n', '<leader>cs', '<cmd>nohlsearch<CR>')
+map('n', ';', ':')
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+-- map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+-- map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+-- map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+-- map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
+-- markdown preview keymaps
+map('n', '<leader>mp', '<cmd>MarkdownPreviewToggle<CR>', { desc = 'markdown preview' })
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -41,7 +43,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
-local map = vim.keymap.set
 
 map('i', '<C-b>', '<ESC>^i', { desc = 'move beginning of line' })
 map('i', '<C-e>', '<End>', { desc = 'move end of line' })
@@ -69,21 +70,25 @@ map('n', '[d', vim.diagnostic.goto_prev, { desc = 'lsp prev diagnostic' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'lsp next diagnostic' })
 map('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'lsp diagnostic loclist' })
 
--- Comment
-map('n', '<leader>/', function()
-  require('Comment.api').toggle.linewise.current()
-end, { desc = 'comment toggle' })
-
-map('v', '<leader>/', "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { desc = 'comment toggle' })
-
+-- -- tabufline navigation
+-- map('n', '<tab>', '<cmd>BufferLineCycleNext<CR>', { desc = 'tabline next' })
+-- map('n', '<S-tab>', '<cmd>BufferLineCyclePrev<CR>', { desc = 'tabline prev' })
+-- map('n', '<leader>x', '<cmd>tabclose<CR>', { desc = 'tabline close' })
+-- -- Comment
+-- map('n', '<leader>/', function()
+--   require('Comment.api').toggle.linewise.current()
+-- end, { desc = 'comment toggle' })
+--
+-- map('v', '<leader>/', "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { desc = 'comment toggle' })
+--
 -- telescope
 map('n', '<leader>ma', '<cmd>Telescope marks<CR>', { desc = 'telescope find marks' })
 map('n', '<leader>cm', '<cmd>Telescope git_commits<CR>', { desc = 'telescope git commits' })
 map('n', '<leader>gt', '<cmd>Telescope git_status<CR>', { desc = 'telescope git status' })
 
 -- terminal
-map('t', '<C-x>', '<C-\\><C-N>', { desc = 'terminal escape terminal mode' })
-
+-- map('t', '<C-x>', '<C-\\><C-N>', { desc = 'terminal escape terminal mode' })
+map('n', '<leader>scm', '<cmd>Neogit<cr>', { desc = 'toggle neogit scm view' })
 -- whichkey
 map('n', '<leader>wK', '<cmd>WhichKey <CR>', { desc = 'whichkey all keymaps' })
 

@@ -29,9 +29,17 @@ require('lazy').setup({
   -- include a plugin definition from file lua/path/name.lua
   require 'kickstart/plugins/gitsigns',
 
+  require 'kickstart/plugins/neogit',
+
   require 'kickstart/plugins/lualine',
 
   require 'kickstart/plugins/which-key',
+
+  -- require 'kickstart/plugins/bufferline',
+
+  require 'kickstart/plugins/markdown-preview',
+
+  require 'kickstart/plugins/toggleterm',
 
   require 'kickstart/plugins/alpha',
 
