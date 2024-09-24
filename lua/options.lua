@@ -15,7 +15,16 @@ vim.opt.relativenumber = true
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamed,unnamedplus'
+
+-- use spaces instead of tabs for indentations
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+
+-- Enable line wrapping
+vim.opt.wrap = true
 
 -- Enable break indent
 vim.opt.breakindent = true

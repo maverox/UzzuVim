@@ -6,6 +6,14 @@ return {
       options = {
         theme = 'dracula',
       },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch' },
+        lualine_c = { { path = 1, 'filename' } },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' },
+      },
     }
   end,
 }
